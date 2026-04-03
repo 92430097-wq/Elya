@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Cart</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+/* CART */
+.cart {
+    flex: 2;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-height: 300px;
+}
+
+.cart h2 {
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* CHECKOUT FORM */
+.checkout {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.checkout input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button.submit {
+    width: 100%;
+    padding: 12px;
+    background: #c94f7c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Sample product section */
+.products {
+    margin-bottom: 20px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>My Cart</h1>
+<div class="container">
+
+    <!-- CART ITEMS -->
+    <div class="cart">
+        <h2>Your Items</h2>
+        <div class="cart-items">
+            <!-- Cart items will appear here dynamically -->
+            <div class="empty-cart">Your cart is empty.</div>
+        </div>
+        <hr>
+        <p>Bag Total: $<span id="bag-total">0</span></p>
+        <p>Bag Discount: $<span id="bag-discount">0</span></p>
+        <p>Delivery: FREE</p>
+        <p style="font-weight:bold;">Order Total: $<span id="order-total">0</span></p>
+    </div>
+
+    <!-- CHECKOUT FORM -->
+    <div class="checkout">
+        <h2 style="text-align:center; color:#b76e79;">Submit My Order</h2>
+
+        <label>Full Name*</label>
+        <input type="text" placeholder="John Smith">
+
+        <label>Address Line 1*</label>
+        <input type="text" placeholder="123 Market Street">
+
+        <label>Address Line 2</label>
+        <input type="text" placeholder="Optional">
+
+        <label>City*</label>
+        <input type="text" placeholder="City">
+
+        <label>Region / State*</label>
+        <input type="text" placeholder="Region">
+
+        <label>Zip / Postal Code*</label>
+        <input type="text" placeholder="0000">
+
+        <label>Phone Number*</label>
+        <input type="text" placeholder="(555) 555-5555">
+
+        <label>Email Address*</label>
+        <input type="email" placeholder="example@email.com">
+
+        <button class="submit">Submit My Order</button>
+    </div>
+
+</div>
+<script>
+function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.querySelector('.cart-items');
+    const emptyMsg = document.querySelector('.empty-cart');
+
+    cartContainer.innerHTML = "";
+
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+        document.getElementById('bag-total').innerText = 0;
+        document.getElementById('order-total').innerText = 0;
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        let price = parseFloat(item.price.replace('$',''));
+        total += price;
+
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+
+        div.innerHTML = `
+            <span>${item.name} - ${item.price}</span>
+            <button class="delete-btn" onclick="removeItem(${index})">Delete</button>
+        `;
+
+        cartContainer.appendChild(div);
+    });
+
+    document.getElementById('bag-total').innerText = total;
+    document.getElementById('bag-discount').innerText = 0;
+    document.getElementById('order-total').innerText = total;
+}
+
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+}
+
+// Load cart when page opens
+loadCart();
+</script>
+</body>
+</html>

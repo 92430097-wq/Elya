@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skin Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.overlay {
+    background: rgba(255, 245, 247, 0.92);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: #b76e79;
+}
+
+/* INTRO */
+.intro {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.intro p {
+    color: #5e4b4f;
+}
+
+.scan-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    background: #c94f7c;
+    color: white;
+    cursor: pointer;
+}
+
+.scan-btn:hover {
+    background: #a63d65;
+}
+
+video {
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* QUIZ */
+.question {
+    margin-bottom: 25px;
+}
+
+.question p {
+    font-weight: 500;
+    color: #5e4b4f;
+}
+
+.options button {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #c94f7c;
+    background: white;
+    color: #c94f7c;
+    cursor: pointer;
+}
+
+.options button:hover {
+    background: #c94f7c;
+    color: white;
+}
+
+#result {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#result h2 {
+    color: #b76e79;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <!-- INTRO -->
+    <div class="intro">
+        <h1>Find Your Perfect Match 💄</h1>
+        <p>Scan your skin to get your perfect foundation shade ✨</p>
+
+        <video id="video" width="250" height="200" autoplay></video><br>
+
+        <button class="scan-btn" onclick="startCamera()">Open Camera</button>
+        <button class="scan-btn" onclick="captureSkin()">Scan Skin</button>
+
+        <canvas id="canvas" width="250" height="200" style="display:none;"></canvas>
+
+        <div id="scanResult" style="margin-top:15px;"></div>
+    </div>
+
+    <!-- QUIZ -->
+    <h1>Skin Type Quiz</h1>
+    <div id="quiz"></div>
+    <div id="result" style="display:none;"></div>
+
+</div>
+
+<script>
+
+/* CAMERA */
+let video = document.getElementById("video");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        video.srcObject = stream;
+    })
+    .catch(() => {
+        alert("Camera access denied 😢");
+    });
+}
+
+function captureSkin() {
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    let data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+    let r=0, g=0, b=0, count=0;
+
+    for(let i=0; i<data.length; i+=40){
+        r+=data[i];
+        g+=data[i+1];
+        b+=data[i+2];
+        count++;
+    }
+
+    r=Math.floor(r/count);
+    g=Math.floor(g/count);
+    b=Math.floor(b/count);
+
+    let shade = detectShade(r,g,b);
+
+    document.getElementById("scanResult").innerHTML =
+        `<h3>Your Shade: ${shade}</h3>`;
+}
+
+function detectShade(r,g,b){
+    let brightness = (r+g+b)/3;
+
+    if(brightness>200) return "Fair";
+    if(brightness>170) return "Light";
+    if(brightness>140) return "Medium";
+    if(brightness>110) return "Tan";
+    return "Deep";
+}
+
+/* QUIZ */
+const questions = [
+    {text:"1. How does your skin feel after washing?", options:["A. Dry","B. Normal","C. Oily","D. Mixed"]},
+    {text:"2. Oil during day?", options:["A. Never","B. Rare","C. Often","D. T-zone"]},
+    {text:"3. Pores?", options:["A. Invisible","B. Small","C. Large","D. Some areas"]},
+    {text:"4. Breakouts?", options:["A. Rare","B. Sometimes","C. Frequent","D. Specific areas"]},
+    {text:"5. Moisturizer?", options:["A. Still dry","B. Balanced","C. Greasy","D. Mixed"]},
+    {text:"6. Makeup lasting?", options:["A. Cracks","B. Good","C. Melts","D. Mixed"]}
+];
+
+const rec = {
+A:{type:"Dry Skin"},
+B:{type:"Normal Skin"},
+C:{type:"Oily Skin"},
+D:{type:"Combination Skin"}
+};
+
+let qIndex=0, answers=[];
+
+function showQ(){
+    if(qIndex>=questions.length) return showResult();
+
+    let q=questions[qIndex];
+    document.getElementById("quiz").innerHTML =
+        `<p>${q.text}</p>` +
+        q.options.map(o=>`<button onclick="ans('${o[0]}')">${o}</button>`).join("");
+}
+
+function ans(a){
+    answers.push(a);
+    qIndex++;
+    showQ();
+}
+
+function showResult(){
+    let count={A:0,B:0,C:0,D:0};
+    answers.forEach(x=>count[x]++);
+    let max = Object.keys(count).reduce((a,b)=>count[a]>count[b]?a:b);
+
+    document.getElementById("quiz").style.display="none";
+    document.getElementById("result").style.display="block";
+    document.getElementById("result").innerHTML =
+        `<h2>${rec[max].type}</h2>`;
+}
+
+showQ();
+
+</script>
+
+</body>
+</html>

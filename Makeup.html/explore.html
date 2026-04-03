@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cosmetic Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f7f5f2;
+    color: #333;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #b76e79;
+    font-size: 40px;
+    margin: 0 0 10px;
+}
+
+header p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* PRODUCT GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.product {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.product h3 {
+    font-size: 18px;
+    color: #b76e79;
+    margin: 5px 0;
+}
+
+.product p {
+    font-size: 14px;
+    margin: 5px 0 15px 0;
+}
+
+.add-to-cart {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #c94f7c;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-to-cart:hover {
+    background: #b14b6c;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Our Collection</h1>
+    <p>Featuring top products from Dior, Maybelline, and Estée Lauder</p>
+</header>
+
+<div class="products">
+    <!-- Dior Products -->
+    <div class="product">
+        <img src="diorlip.jpeg" alt="Dior Lipstick">
+        <h3>Dior Lipstick</h3>
+        <p>$45</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="diorfound.jpeg" alt="Dior Foundation">
+        <h3>Dior Foundation</h3>
+        <p>$60</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="diorblush.jpeg" alt="Dior Blush">
+        <h3>Dior Blush</h3>
+        <p>$50</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="diorhigh.jpeg" alt="Dior Eyeshadow">
+        <h3>Dior Eyeshadow</h3>
+        <p>$55</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="diormascara.jpeg" alt="Dior Mascara">
+        <h3>Dior Mascara</h3>
+        <p>$40</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- Maybelline Products -->
+    <div class="product">
+        <img src="maylip.jpeg" alt="Maybelline Lipstick">
+        <h3>Maybelline Lipstick</h3>
+        <p>$15</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="mayfound.jpeg" alt="Maybelline Foundation">
+        <h3>Maybelline Foundation</h3>
+        <p>$20</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="mayblush.jpeg" alt="Maybelline Blush">
+        <h3>Maybelline Blush</h3>
+        <p>$18</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="mayeyeshadow.jpeg" alt="Maybelline Eyeshadow">
+        <h3>Maybelline Eyeshadow</h3>
+        <p>$22</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="maymascara.jpeg" alt="Maybelline Mascara">
+        <h3>Maybelline Mascara</h3>
+        <p>$16</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- Estée Lauder Products -->
+    <div class="product">
+        <img src="esteelip.jpeg" alt="Estee Lauder Lipstick">
+        <h3>Estée Lauder Lipstick</h3>
+        <p>$35</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="esteefound .jpeg" alt="Estee Lauder Foundation">
+        <h3>Estée Lauder Foundation</h3>
+        <p>$55</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="esteeblush.jpeg" alt="Estee Lauder Blush">
+        <h3>Estée Lauder Blush</h3>
+        <p>$45</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="esteehigh.jpeg" alt="Estee Lauder Eyeshadow">
+        <h3>Estée Lauder Eyeshadow</h3>
+        <p>$50</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="esteemascara.jpeg" alt="Estee Lauder Mascara">
+        <h3>Estée Lauder Mascara</h3>
+        <p>$38</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</div>
+<script>
+// Function to add product to cart
+const buttons = document.querySelectorAll('.add-to-cart');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const productDiv = btn.parentElement;
+
+        const product = {
+            name: productDiv.querySelector('h3').innerText,
+            price: productDiv.querySelector('p').innerText,
+            image: productDiv.querySelector('img').src
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cart.push(product);
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // ✅ NEW: message nicer
+        alert(product.name + " added to cart successfully!");
+
+        // ✅ NEW: optional redirect to cart page
+        // if your cart page name is cart.html
+        window.location.href = "cart.html";
+    });
+});
+</script>
+</body>
+</html>
