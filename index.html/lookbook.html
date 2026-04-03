@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lookbook</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+/* SAME BACKGROUND */
+.lookbook {
+    min-height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    padding: 80px 50px;
+}
+
+/* DARK + COLOR FADE OVERLAY */
+.lookbook::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.7),
+        rgba(201,79,124,0.4),
+        rgba(0,0,0,0.8)
+    );
+    z-index: 1;
+}
+
+/* CONTENT ABOVE OVERLAY */
+.content {
+    position: relative;
+    z-index: 2;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-size: 50px;
+    margin-bottom: 60px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* IMAGE CARD */
+.card {
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* IMAGES */
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+/* HOVER ZOOM */
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* FADE OVER IMAGE */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6),
+        transparent
+    );
+}
+
+/* OPTIONAL TEXT */
+.caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lookbook">
+    <div class="content">
+        <h1>LOOKBOOK</h1>
+
+        <div class="grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160">
+                <div class="caption">Glow Skin</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df">
+                <div class="caption">Soft Glam</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e">
+                <div class="caption">Natural Beauty</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796">
+                <div class="caption">Bold Look</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702">
+                <div class="caption">Radiant Glow</div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500336624523-d727130c3328">
+                <div class="caption">Evening Muse</div>
+            </div>
+            <div class="card">
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
+    <div class="caption">Golden Touch</div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1">
+    <div class="caption">Soft Light</div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
+    <div class="caption">Fresh Glow</div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
+    <div class="caption">Silk Skin</div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+    <div class="caption">Pure Beauty</div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <div class="caption">Luxury Glow</div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

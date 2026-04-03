@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Art of Luminosity</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f7f5f2;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 15px;
+    position: relative;
+}
+
+/* hover underline effect */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background: #333;
+    transition: 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* Logo and boxed links */
+.logo {
+    font-weight: bold;
+    border: 1px solid #aaa;
+    padding: 6px 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Boxes like "PRODUCT" or "STORY" */
+.box-link {
+    border-radius: 50px;
+    border: 2px solid #333;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    padding: 5px 15px;
+    display: inline-block;
+    margin: 0 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.box-link:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    /* Online cosmetic-style background image */
+     background-image: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+    position: relative;
+    color: white;
+}
+
+/* Dark overlay for text readability */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.hero h1,
+.subtitle,
+.btn {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.hero h1 span {
+    font-style: italic;
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 35px;
+    padding: 12px 35px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div>
+        <a href="AIassistant.html" target="_blank" class="box-link" style="color: #c94f7c;">AI ASSISTANT</a>
+        <a href="lookbook.html" target="_blank" class="box-link" style="color: #c94f7c;">LOOKBOOK</a>
+       
+        <a href="contactinfo.html" target="_blank" class="box-link" style="color: #c94f7c;">CONTACT📞</a>
+        <a href="cart.html" target="_blank" class="box-link" style="color: #c94f7c;">CART🛒</a>
+          
+    </div>
+
+
+    <div>
+       <a href="story.html" target="_blank" class="box-link" style="color: #c94f7c;">STORY📖</a>
+        <a href="login.html" target="_blank" class="box-link" style="color: #c94f7c;">LOGIN</a>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>The Art of <br><span>Luminosity</span></h1>
+
+    <div class="subtitle">
+        HIGH-PERFORMANCE COSMETICS FOR THE MODERN MUSE<br> 
+        HELLO BEAUTIFUL, WELCOME TO THE WORLD OF LUMINOUS BEAUTY🎀
+    </div>
+
+    <a href="explore.html" class="btn" >EXPLORE COLLECTION</a>
+</div>
+
+</body>
+</html>
